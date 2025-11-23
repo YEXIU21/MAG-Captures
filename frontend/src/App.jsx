@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PortfolioManagement from './pages/PortfolioManagement';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminBookings from './pages/AdminBookings';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import './index.css';
 
@@ -38,6 +39,7 @@ function AppContent({ isAuthenticated, setIsAuthenticated, handleLogout }) {
           <Route path="/register" element={<Register onRegisterSuccess={() => setIsAuthenticated(true)} />} />
           <Route path="/admin" element={isAuthenticated ? <AdminDashboard /> : <Home />} />
           <Route path="/admin/portfolio" element={isAuthenticated ? <PortfolioManagement /> : <Home />} />
+          <Route path="/admin/bookings" element={isAuthenticated ? <AdminBookings /> : <Home />} />
         </Routes>
       </main>
       {!isAuthPage && (

@@ -1,9 +1,11 @@
 // BookingForm Component
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../utils/api';
 import { AlertCircle, CheckCircle } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const BookingForm = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     clientName: '',
     clientEmail: '',
@@ -60,9 +62,9 @@ const BookingForm = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className={`py-16 transition ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className="container mx-auto px-4 max-w-2xl">
-        <h2 className="text-4xl font-bold text-center mb-12 text-primary">Book a Session</h2>
+        <h2 className={`text-4xl font-bold text-center mb-12 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Schedule Your Session</h2>
 
         {message.text && (
           <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
@@ -84,7 +86,7 @@ const BookingForm = () => {
               value={formData.clientName}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             />
             <input
               type="email"
@@ -93,7 +95,7 @@ const BookingForm = () => {
               value={formData.clientEmail}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             />
           </div>
 
@@ -105,13 +107,13 @@ const BookingForm = () => {
               value={formData.clientPhone}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             />
             <select
               name="serviceType"
               value={formData.serviceType}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             >
               <option value="portrait">Portrait</option>
               <option value="event">Event</option>
@@ -129,7 +131,7 @@ const BookingForm = () => {
               value={formData.bookingDate}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             />
             <input
               type="number"
@@ -139,7 +141,7 @@ const BookingForm = () => {
               onChange={handleChange}
               min="1"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
             />
           </div>
 
@@ -150,7 +152,7 @@ const BookingForm = () => {
             value={formData.location}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
           />
 
           <textarea
@@ -159,7 +161,7 @@ const BookingForm = () => {
             value={formData.notes}
             onChange={handleChange}
             rows="4"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
           />
 
           <input
@@ -170,7 +172,7 @@ const BookingForm = () => {
             onChange={handleChange}
             min="0"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-800 text-white border-gray-700' : 'bg-white text-primary border-gray-300'}`}
           />
 
           <button

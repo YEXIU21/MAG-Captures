@@ -1,15 +1,18 @@
 // Contact Page
-import React from 'react';
+import React, { useContext } from 'react';
 import BookingForm from '../components/BookingForm';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Contact = () => {
+  const { isDarkMode } = useContext(ThemeContext);
+
   return (
     <div>
       <BookingForm />
 
       {/* Contact Info Section */}
-      <section className="py-16 bg-primary text-white">
+      <section className={`py-16 text-white transition ${isDarkMode ? 'bg-gray-800' : 'bg-primary'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Contact Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
