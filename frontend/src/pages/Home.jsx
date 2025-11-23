@@ -70,10 +70,10 @@ const Home = () => {
             <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
               Capture Your <span className="text-accent">Moments</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-4 text-gray-300 max-w-2xl mx-auto italic">
+            <p className="text-xl md:text-2xl mb-4 text-gray-200 max-w-2xl mx-auto italic">
               "Every moment is a chance to create a memory worth keeping."
             </p>
-            <p className="text-lg md:text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl mb-12 text-gray-200 max-w-2xl mx-auto">
               Let us create timeless memories for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -94,26 +94,13 @@ const Home = () => {
         </div>
         
         {/* Scroll Down Arrow */}
-        <button
-          onClick={() => {
-            const featuresSection = document.querySelector('#features-section');
-            if (featuresSection) {
-              const targetPosition = featuresSection.offsetTop;
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }}
-          className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-30 cursor-pointer hover:opacity-80 transition"
-          title="Scroll to features"
-        >
-          <div className="arrow-bounce text-white">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-30">
+          <div className={`arrow-bounce ${isDarkMode ? 'text-white' : 'text-accent'}`} style={{filter: isDarkMode ? 'none' : 'drop-shadow(0 4px 8px rgba(0,0,0,0.5))'}}>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </div>
-        </button>
+        </div>
       </section>
 
       {/* Features Section */}
