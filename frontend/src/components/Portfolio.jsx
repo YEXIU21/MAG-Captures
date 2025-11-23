@@ -8,10 +8,6 @@ const Portfolio = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  useEffect(() => {
-    fetchPortfolios();
-  }, [selectedCategory]);
-
   const fetchPortfolios = async () => {
     try {
       setLoading(true);
@@ -26,6 +22,11 @@ const Portfolio = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchPortfolios();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   const categories = ['all', 'portrait', 'event', 'product', 'commercial', 'wedding'];
 

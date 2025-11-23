@@ -33,7 +33,7 @@ const BookingForm = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const response = await api.post('/bookings', formData);
+      await api.post('/bookings', formData);
       setMessage({
         type: 'success',
         text: 'Booking created successfully! We will contact you soon.'

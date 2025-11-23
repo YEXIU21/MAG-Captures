@@ -57,7 +57,7 @@ const PortfolioManagement = () => {
         return;
       }
 
-      const response = await api.post('/portfolio', formData);
+      await api.post('/portfolio', formData);
       setMessage({
         type: 'success',
         text: 'Portfolio item created successfully!'
