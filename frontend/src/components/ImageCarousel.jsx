@@ -20,18 +20,18 @@ const ImageCarousel = ({ images = [] }) => {
   useEffect(() => {
     if (!autoPlay || carouselImages.length === 0) return;
 
-    // Alternate between showing image (5s) and blank (5s)
+    // Show 2 images, then blank: image 0, image 1, blank, image 2, image 3, blank, etc.
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = prev + 1;
-        // Cycle through: image 0, blank, image 1, blank, image 2, blank, etc.
-        const totalSlides = carouselImages.length * 2;
+        // Cycle through: 2 images + 1 blank = 3 slides per cycle
+        const totalSlides = Math.ceil(carouselImages.length / 2) * 3;
         if (nextIndex >= totalSlides) {
           return 0;
         }
         return nextIndex;
       });
-    }, 5000); // 5 seconds per slide (image or blank)
+    }, 5000); // 5 seconds per slide
 
     return () => clearInterval(interval);
   }, [autoPlay, carouselImages.length]);
@@ -61,7 +61,7 @@ const ImageCarousel = ({ images = [] }) => {
           <div
             key={index}
             className={`absolute w-full h-full transition-opacity duration-1000 ${
-              index * 2 === currentIndex ? 'opacity-100' : 'opacity-0'
+              index === currentIndex || (index + 1 === currentIndex && index < carouselImages.length - 1) ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <img
@@ -74,15 +74,19 @@ const ImageCarousel = ({ images = [] }) => {
           </div>
         ))}
         
-        {/* Blank slides between images */}
-        {carouselImages.map((_, index) => (
-          <div
-            key={`blank-${index}`}
-            className={`absolute w-full h-full bg-gray-900 transition-opacity duration-1000 ${
-              index * 2 + 1 === currentIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-        ))}
+        {/* Blank slides after every 2 images */}
+        {carouselImages.map((_, index) => {
+          const blankIndex = Math.floor(index / 2);
+          const slideIndex = blankIndex * 3 + 2;
+          return (
+            <div
+              key={`blank-${index}`}
+              className={`absolute w-full h-full bg-gray-900 transition-opacity duration-1000 ${
+                slideIndex === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          );
+        })}
       </div>
 
       {/* Previous Button */}
