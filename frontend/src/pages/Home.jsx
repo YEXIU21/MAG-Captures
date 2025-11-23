@@ -1,7 +1,7 @@
 // Home Page
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Camera, Award, Users, ArrowRight } from 'lucide-react';
+import { Camera, Award, Users, ArrowRight, ArrowUp } from 'lucide-react';
 import ImageCarousel from '../components/ImageCarousel';
 import api from '../utils/api';
 import { ThemeContext } from '../context/ThemeContext';
@@ -12,6 +12,7 @@ const Home = () => {
     '/images carousell/1.jpg',
     '/images carousell/2.jpg',
   ]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   // Load carousel images from portfolio
   useEffect(() => {
@@ -52,6 +53,29 @@ const Home = () => {
 
     loadCarouselImages();
   }, []);
+
+  // Handle scroll to show/hide scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Show button when user is near the bottom (within 200px)
+      if (scrollPosition + windowHeight >= documentHeight - 200) {
+        setShowScrollToTop(true);
+      } else {
+        setShowScrollToTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div>
@@ -189,6 +213,21 @@ const Home = () => {
           </Link>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      {showScrollToTop && (
+        <button
+          onClick={scrollToTop}
+          className={`fixed bottom-8 right-8 z-40 p-3 rounded-full transition transform hover:scale-110 ${
+            isDarkMode 
+              ? 'bg-accent text-primary hover:bg-opacity-90' 
+              : 'bg-accent text-primary hover:bg-opacity-90'
+          }`}
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </div>
   );
 };
