@@ -31,7 +31,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className={`p-2 rounded transition ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-primary/10 hover:bg-primary/20'}`}
+            className="transition hover:opacity-70"
             title="Toggle dark/light mode"
           >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -69,7 +69,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
             {/* Theme Toggle Mobile */}
             <button
               onClick={toggleTheme}
-              className={`p-2 rounded transition flex items-center gap-2 ${isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-primary/10 hover:bg-primary/20 text-primary'}`}
+              className="transition hover:opacity-70 flex items-center gap-2"
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>

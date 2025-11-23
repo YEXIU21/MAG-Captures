@@ -50,7 +50,7 @@ const AdminHeader = ({ onLogout }) => {
           </Link>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded transition hover:bg-white/10"
+            className="transition hover:opacity-70"
             title="Toggle dark/light mode"
           >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -109,7 +109,7 @@ const AdminHeader = ({ onLogout }) => {
             </Link>
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-2 hover:text-accent transition"
+              className="flex items-center gap-2 hover:opacity-70 transition"
               title="Toggle dark/light mode"
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
