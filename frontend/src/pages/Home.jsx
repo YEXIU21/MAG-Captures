@@ -143,28 +143,28 @@ const Home = () => {
       <section className={`py-16 transition ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-secondary text-primary'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
+            <div className={`p-8 rounded-xl transition ${isDarkMode ? 'bg-gray-700' : 'bg-white shadow-lg'}`}>
               <p className="text-5xl font-bold mb-2 text-accent">500+</p>
-              <p className="text-lg">Events Completed</p>
+              <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Events Completed</p>
             </div>
-            <div>
+            <div className={`p-8 rounded-xl transition ${isDarkMode ? 'bg-gray-700' : 'bg-white shadow-lg'}`}>
               <p className="text-5xl font-bold mb-2 text-accent">98%</p>
-              <p className="text-lg">Client Satisfaction</p>
+              <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Client Satisfaction</p>
             </div>
-            <div>
+            <div className={`p-8 rounded-xl transition ${isDarkMode ? 'bg-gray-700' : 'bg-white shadow-lg'}`}>
               <p className="text-5xl font-bold mb-2 text-accent">6+</p>
-              <p className="text-lg">Years Experience</p>
+              <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Years Experience</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className={`py-24 relative overflow-hidden transition ${isDarkMode ? 'bg-gradient-to-r from-gray-900 to-black text-white' : 'bg-primary text-white'}`}>
+      <section className={`py-24 relative overflow-hidden transition ${isDarkMode ? 'bg-gradient-to-r from-gray-900 to-black text-white' : 'bg-white text-primary border-t-4 border-accent'}`}>
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-5xl font-bold mb-6">Ready to Book?</h2>
-          <p className="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
+          <h2 className={`text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Ready to Book?</h2>
+          <p className={`text-xl mb-12 max-w-2xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Let's create beautiful memories together. Contact us today to schedule your session.
           </p>
           <Link

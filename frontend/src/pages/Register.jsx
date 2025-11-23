@@ -1,10 +1,12 @@
 // Register Page
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import api from '../utils/api';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Register = ({ onRegisterSuccess }) => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,17 +79,17 @@ const Register = ({ onRegisterSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-gray-900 to-primary flex items-center justify-center px-4 py-12">
+    <div className={`min-h-screen flex items-center justify-center px-4 py-12 transition ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-br from-secondary via-white to-secondary'}`}>
       <div className="w-full max-w-md my-auto">
         {/* Card */}
-        <div className="bg-white rounded-xl shadow-2xl p-8">
+        <div className={`rounded-xl shadow-2xl p-8 transition ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-accent bg-opacity-20 rounded-full mb-4">
               <UserPlus className="text-accent" size={32} />
             </div>
-            <h1 className="text-3xl font-bold text-primary mb-2">Create Account</h1>
-            <p className="text-gray-600">Register to manage your portfolio</p>
+            <h1 className={`text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Create Account</h1>
+            <p className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Register to manage your portfolio</p>
           </div>
 
           {/* Error Message */}
@@ -209,10 +211,17 @@ const Register = ({ onRegisterSuccess }) => {
           </form>
 
           {/* Footer */}
-          <p className="text-center text-gray-600 text-sm mt-6">
+          <p className={`text-center text-sm mt-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             Already have an account?{' '}
             <Link to="/login" className="text-accent font-semibold hover:underline">
               Sign in here
+            </Link>
+          </p>
+          
+          {/* Back to Home */}
+          <p className={`text-center text-sm mt-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <Link to="/" className="text-accent font-semibold hover:underline">
+              ← Back to Home
             </Link>
           </p>
         </div>

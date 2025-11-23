@@ -35,10 +35,10 @@ const Services = () => {
 
   return (
     <div>
-      <section className={`text-white py-8 transition ${isDarkMode ? 'bg-gray-800' : 'bg-primary'}`}>
+      <section className={`py-8 transition ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-primary border-b-4 border-accent'}`}>
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-2">Our Services</h1>
-          <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-200'}`}>
+          <h1 className={`text-4xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Our Services</h1>
+          <p className={`text-lg ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Professional photography services tailored to your needs
           </p>
         </div>
@@ -72,10 +72,10 @@ const Services = () => {
         </div>
       </section>
 
-      <section className={`text-white py-16 transition ${isDarkMode ? 'bg-gray-800' : 'bg-primary'}`}>
+      <section className={`py-16 transition ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-primary border-t-4 border-accent'}`}>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">Custom Packages Available</h2>
-          <p className={`text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-300'}`}>
+          <h2 className={`text-4xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Custom Packages Available</h2>
+          <p className={`text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             Need something special? We offer custom photography packages tailored to your needs.
           </p>
           <Link
