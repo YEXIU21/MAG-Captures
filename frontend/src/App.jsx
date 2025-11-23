@@ -20,7 +20,7 @@ function AppContent({ isAuthenticated, setIsAuthenticated, handleLogout }) {
   const isAdminPage = location.pathname.startsWith('/admin');
 
   return (
-    <div className="min-h-screen bg-secondary">
+    <div className="flex flex-col min-h-screen">
       {!isAuthPage && (
         isAuthenticated && isAdminPage ? (
           <AdminHeader onLogout={handleLogout} />
@@ -28,7 +28,7 @@ function AppContent({ isAuthenticated, setIsAuthenticated, handleLogout }) {
           <Header isAuthenticated={isAuthenticated} onLogout={handleLogout} />
         )
       )}
-      <main>
+      <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
