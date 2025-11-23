@@ -24,13 +24,14 @@ const ImageCarousel = ({ images = [] }) => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = prev + 1;
-        // If we've shown all images, reset to 0
-        if (nextIndex >= carouselImages.length * 2) {
+        // Cycle through: image 0, blank, image 1, blank, image 2, blank, etc.
+        const totalSlides = carouselImages.length * 2;
+        if (nextIndex >= totalSlides) {
           return 0;
         }
         return nextIndex;
       });
-    }, 5000); // 5 seconds for image, 5 seconds for blank
+    }, 5000); // 5 seconds per slide (image or blank)
 
     return () => clearInterval(interval);
   }, [autoPlay, carouselImages.length]);
