@@ -46,10 +46,10 @@ const Portfolio = () => {
   };
 
   return (
-    <section className={`py-12 min-h-[50vh] transition ${isDarkMode ? 'bg-gray-900' : 'bg-primary'}`}>
+    <section className={`py-12 min-h-[30vh] transition ${isDarkMode ? 'bg-gray-900' : 'bg-primary'}`}>
       <div className="container mx-auto px-4">
         {/* Category Filter */}
-        <div className="flex justify-center gap-4 mb-12 flex-wrap">
+        <div className="flex justify-center gap-4 mb-8 flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -111,7 +111,7 @@ const Portfolio = () => {
         )}
 
         {!loading && portfolios.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-4">
             <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-white'}`}>No portfolios found in this category.</p>
           </div>
         )}
