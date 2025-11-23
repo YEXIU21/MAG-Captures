@@ -61,7 +61,7 @@ const ImageCarousel = ({ images = [] }) => {
           <div
             key={index}
             className={`absolute w-full h-full transition-opacity duration-1000 ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index * 2 === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <img
@@ -79,7 +79,7 @@ const ImageCarousel = ({ images = [] }) => {
           <div
             key={`blank-${index}`}
             className={`absolute w-full h-full bg-gray-900 transition-opacity duration-1000 ${
-              carouselImages.length + index === currentIndex ? 'opacity-100' : 'opacity-0'
+              index * 2 + 1 === currentIndex ? 'opacity-100' : 'opacity-0'
             }`}
           />
         ))}
