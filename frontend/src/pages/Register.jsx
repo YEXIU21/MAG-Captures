@@ -104,7 +104,7 @@ const Register = ({ onRegisterSuccess }) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Field */}
             <div>
-              <label htmlFor="name" className="block text-sm font-semibold text-primary mb-2">
+              <label htmlFor="name" className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
                 Full Name
               </label>
               <input
@@ -114,14 +114,14 @@ const Register = ({ onRegisterSuccess }) => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:border-accent focus:outline-none transition ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-200'}`}
                 disabled={loading}
               />
             </div>
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-primary mb-2">
+              <label htmlFor="email" className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
                 Email Address
               </label>
               <input
@@ -131,14 +131,14 @@ const Register = ({ onRegisterSuccess }) => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="admin@example.com"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:border-accent focus:outline-none transition ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-200'}`}
                 disabled={loading}
               />
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-primary mb-2">
+              <label htmlFor="password" className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
                 Password
               </label>
               <div className="relative">
@@ -149,13 +149,13 @@ const Register = ({ onRegisterSuccess }) => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition pr-12"
+                  className={`w-full px-4 py-3 border-2 rounded-lg focus:border-accent focus:outline-none transition pr-12 ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-200'}`}
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-primary transition"
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 transition ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-primary'}`}
                   disabled={loading}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -165,7 +165,7 @@ const Register = ({ onRegisterSuccess }) => {
 
             {/* Confirm Password Field */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-primary mb-2">
+              <label htmlFor="confirmPassword" className={`block text-sm font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
                 Confirm Password
               </label>
               <div className="relative">
@@ -176,13 +176,13 @@ const Register = ({ onRegisterSuccess }) => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-accent focus:outline-none transition pr-12"
+                  className={`w-full px-4 py-3 border-2 rounded-lg focus:border-accent focus:outline-none transition pr-12 ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-200'}`}
                   disabled={loading}
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-primary transition"
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 transition ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-primary'}`}
                   disabled={loading}
                 >
                   {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}

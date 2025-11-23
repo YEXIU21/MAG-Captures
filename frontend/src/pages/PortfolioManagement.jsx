@@ -1,10 +1,12 @@
 // Portfolio Management Page
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../utils/api';
 import ImageUpload from '../components/ImageUpload';
 import { AlertCircle, CheckCircle, Trash2 } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const PortfolioManagement = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -81,9 +83,9 @@ const PortfolioManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-secondary py-12">
+    <div className={`min-h-screen py-12 transition ${isDarkMode ? 'bg-gray-900' : 'bg-secondary'}`}>
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-5xl font-bold text-primary mb-12">Portfolio Management</h1>
+        <h1 className={`text-5xl font-bold mb-12 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Portfolio Management</h1>
 
         {message.text && (
           <div className={`mb-8 p-4 rounded-lg flex items-center gap-3 ${
@@ -96,10 +98,10 @@ const PortfolioManagement = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg space-y-6">
+        <form onSubmit={handleSubmit} className={`p-8 rounded-xl shadow-lg space-y-6 transition ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
           {/* Title */}
           <div>
-            <label className="block text-sm font-bold text-primary mb-2">
+            <label className={`block text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
               Portfolio Title *
             </label>
             <input
@@ -109,13 +111,13 @@ const PortfolioManagement = () => {
               onChange={handleInputChange}
               placeholder="e.g., Summer Wedding 2024"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-300'}`}
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-bold text-primary mb-2">
+            <label className={`block text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
               Description *
             </label>
             <textarea
@@ -125,20 +127,20 @@ const PortfolioManagement = () => {
               placeholder="Describe this portfolio item..."
               rows="4"
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-300'}`}
             />
           </div>
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-bold text-primary mb-2">
+            <label className={`block text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
               Category *
             </label>
             <select
               name="category"
               value={formData.category}
               onChange={handleInputChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-accent"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-accent transition ${isDarkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-primary border-gray-300'}`}
             >
               <option value="portrait">Portrait</option>
               <option value="event">Event</option>
@@ -159,14 +161,14 @@ const PortfolioManagement = () => {
               onChange={handleInputChange}
               className="w-4 h-4 accent-accent"
             />
-            <label htmlFor="featured" className="ml-3 text-sm font-bold text-primary">
+            <label htmlFor="featured" className={`ml-3 text-sm font-bold ${isDarkMode ? 'text-white' : 'text-primary'}`}>
               Mark as Featured
             </label>
           </div>
 
           {/* Image Upload */}
           <div>
-            <label className="block text-sm font-bold text-primary mb-4">
+            <label className={`block text-sm font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
               Upload Images *
             </label>
             <ImageUpload onUploadSuccess={handleImagesUpload} multiple={true} />
@@ -175,7 +177,7 @@ const PortfolioManagement = () => {
           {/* Preview Uploaded Images */}
           {formData.images.length > 0 && (
             <div>
-              <h3 className="text-sm font-bold text-primary mb-4">
+              <h3 className={`text-sm font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
                 Images for this Portfolio ({formData.images.length})
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

@@ -1,8 +1,10 @@
 // Image Carousel Component
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const ImageCarousel = ({ images = [] }) => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
