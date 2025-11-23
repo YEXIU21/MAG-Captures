@@ -8,7 +8,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
 
   return (
     <header className="bg-primary text-white shadow-lg">
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="container mx-auto px-4 py-8 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Link to="/" className="text-2xl font-bold text-accent">
             MAG Captures
