@@ -196,9 +196,8 @@ lsof -ti:5000 | xargs kill -9
 2. ✅ Run backend locally
 3. ✅ Test all features
 4. ✅ Set up Cloudinary account
-5. ✅ Deploy to Vercel (frontend)
-6. ✅ Deploy to Render (backend)
 
 ---
 
-**Last Updated**: November 23, 2024
+**Last Updated**: November 22, 2025
+**Project Name**: magcaptures

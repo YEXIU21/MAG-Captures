@@ -208,4 +208,5 @@ When you outgrow free tiers:
 
 ---
 
-**Last Updated**: November 23, 2024
+**Last Updated**: November 22, 2025
+**Project Name**: magcaptures

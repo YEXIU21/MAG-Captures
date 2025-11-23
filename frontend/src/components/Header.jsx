@@ -9,9 +9,11 @@ const Header = ({ isAuthenticated, onLogout }) => {
   return (
     <header className="bg-primary text-white shadow-lg">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-accent">
-          MAG Photographs
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/" className="text-2xl font-bold text-accent">
+            MAG Captures
+          </Link>
+        </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8">
