@@ -7,7 +7,7 @@ const PortfolioPage = () => {
   const { isDarkMode } = useContext(ThemeContext);
 
   return (
-    <>
+    <div className={`min-h-[calc(100vh-200px)] transition ${isDarkMode ? 'bg-gray-900' : 'bg-primary'}`}>
       <section className={`text-white py-16 transition ${isDarkMode ? 'bg-gray-800' : 'bg-primary'}`}>
         <div className="container mx-auto px-4">
           <h1 className="text-5xl font-bold mb-4">Our Portfolio</h1>
@@ -17,7 +17,7 @@ const PortfolioPage = () => {
         </div>
       </section>
       <PortfolioComponent />
-    </>
+    </div>
   );
 };
 
