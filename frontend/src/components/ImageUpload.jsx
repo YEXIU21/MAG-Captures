@@ -1,9 +1,11 @@
 // Image Upload Component
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import api from '../utils/api';
 import { Upload, X, CheckCircle } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const ImageUpload = ({ onUploadSuccess, multiple = false }) => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -66,8 +68,8 @@ const ImageUpload = ({ onUploadSuccess, multiple = false }) => {
       {/* Upload Area */}
       <div className="border-2 border-dashed border-accent rounded-lg p-8 text-center bg-accent bg-opacity-5">
         <Upload className="mx-auto mb-4 text-accent" size={48} />
-        <h3 className="text-xl font-bold mb-2 text-primary">Upload Images</h3>
-        <p className="text-gray-600 mb-6">
+        <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Upload Images</h3>
+        <p className={`mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
           {multiple ? 'Drag and drop images or click to select (up to 10)' : 'Drag and drop an image or click to select'}
         </p>
         <input
@@ -89,12 +91,12 @@ const ImageUpload = ({ onUploadSuccess, multiple = false }) => {
       {/* Selected Files */}
       {files.length > 0 && (
         <div className="mt-6">
-          <h4 className="font-bold text-primary mb-4">Selected Files ({files.length})</h4>
+          <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Selected Files ({files.length})</h4>
           <div className="space-y-2 mb-4">
             {files.map((file, index) => (
-              <div key={index} className="flex items-center justify-between bg-gray-100 p-3 rounded">
-                <span className="text-sm text-gray-700">{file.name}</span>
-                <span className="text-xs text-gray-500">{(file.size / 1024).toFixed(2)} KB</span>
+              <div key={index} className={`flex items-center justify-between p-3 rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-100'}`}>
+                <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{file.name}</span>
+                <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>{(file.size / 1024).toFixed(2)} KB</span>
               </div>
             ))}
           </div>
@@ -118,7 +120,7 @@ const ImageUpload = ({ onUploadSuccess, multiple = false }) => {
       {/* Uploaded Images */}
       {uploadedImages.length > 0 && (
         <div className="mt-6">
-          <h4 className="font-bold text-primary mb-4 flex items-center gap-2">
+          <h4 className={`font-bold mb-4 flex items-center gap-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>
             <CheckCircle size={20} className="text-green-500" />
             Uploaded Images ({uploadedImages.length})
           </h4>

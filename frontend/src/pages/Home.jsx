@@ -61,10 +61,6 @@ const Home = () => {
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-center justify-center text-white z-20 -mt-16">
-          {/* Animated background elements */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent opacity-5 rounded-full blur-3xl"></div>
-          
           <div className="container mx-auto px-4 text-center relative z-10">
             <div className="mb-6 inline-block">
               <span className="bg-accent text-primary px-4 py-2 rounded-full text-sm font-semibold">
@@ -96,10 +92,32 @@ const Home = () => {
             </div>
           </div>
         </div>
+        
+        {/* Scroll Down Arrow */}
+        <button
+          onClick={() => {
+            const featuresSection = document.querySelector('#features-section');
+            if (featuresSection) {
+              const targetPosition = featuresSection.offsetTop;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }}
+          className="absolute -bottom-12 left-1/2 -translate-x-1/2 z-30 cursor-pointer hover:opacity-80 transition"
+          title="Scroll to features"
+        >
+          <div className="arrow-bounce text-white">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </button>
       </section>
 
       {/* Features Section */}
-      <section className={`py-20 transition ${isDarkMode ? 'bg-gray-900' : 'bg-secondary'}`}>
+      <section id="features-section" className={`py-20 transition ${isDarkMode ? 'bg-gray-900' : 'bg-secondary'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className={`text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Why Choose Us</h2>

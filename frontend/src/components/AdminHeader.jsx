@@ -1,11 +1,13 @@
 // Admin Header Component
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, LogOut, LayoutDashboard, Plus, MessageSquare } from 'lucide-react';
+import { Menu, X, LogOut, LayoutDashboard, Plus, MessageSquare, Moon, Sun } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const AdminHeader = ({ onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   const isActive = (path) => location.pathname === path;
 
@@ -46,6 +48,13 @@ const AdminHeader = ({ onLogout }) => {
             <MessageSquare size={20} />
             Bookings
           </Link>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded transition hover:bg-white/10"
+            title="Toggle dark/light mode"
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <button
             onClick={onLogout}
             className="flex items-center gap-2 bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold"
@@ -98,6 +107,14 @@ const AdminHeader = ({ onLogout }) => {
               <MessageSquare size={20} />
               Bookings
             </Link>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 hover:text-accent transition"
+              title="Toggle dark/light mode"
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </button>
             <button
               onClick={onLogout}
               className="flex items-center gap-2 bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold w-full justify-center"
