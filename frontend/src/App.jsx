@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import PortfolioManagement from './pages/PortfolioManagement';
 import './index.css';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin/portfolio" element={isAuthenticated ? <PortfolioManagement /> : <Home />} />
           </Routes>
         </main>
         <footer className="bg-primary text-white py-8 mt-16">
