@@ -10,6 +10,7 @@ const portfolioRoutes = require('./routes/portfolio');
 const bookingRoutes = require('./routes/bookings');
 const uploadRoutes = require('./routes/upload');
 const cloudinaryUploadRoutes = require('./routes/cloudinaryUpload');
+const carouselRoutes = require('./routes/carousel');
 
 // Initialize app
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/upload/cloudinary', cloudinaryUploadRoutes);
+app.use('/api/carousel', carouselRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

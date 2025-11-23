@@ -1,12 +1,17 @@
 // Portfolio Component
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import api from '../utils/api';
 import { Loader, Camera } from 'lucide-react';
+import PortfolioModal from './PortfolioModal';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Portfolio = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   const [portfolios, setPortfolios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedPortfolio, setSelectedPortfolio] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchPortfolios = async () => {
     try {
@@ -30,10 +35,20 @@ const Portfolio = () => {
 
   const categories = ['all', 'portrait', 'event', 'product', 'commercial', 'wedding'];
 
+  const openPortfolioModal = (portfolio) => {
+    setSelectedPortfolio(portfolio);
+    setIsModalOpen(true);
+  };
+
+  const closePortfolioModal = () => {
+    setIsModalOpen(false);
+    setSelectedPortfolio(null);
+  };
+
   return (
-    <section className="py-16 bg-secondary">
+    <section className={`py-16 transition ${isDarkMode ? 'bg-gray-900' : 'bg-secondary'}`}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-primary">Our Portfolio</h2>
+        <h2 className={`text-4xl font-bold text-center mb-12 ${isDarkMode ? 'text-white' : 'text-primary'}`}>Our Portfolio</h2>
 
         {/* Category Filter */}
         <div className="flex justify-center gap-4 mb-12 flex-wrap">
@@ -44,6 +59,8 @@ const Portfolio = () => {
               className={`px-6 py-2 rounded-lg capitalize transition ${
                 selectedCategory === cat
                   ? 'bg-accent text-primary'
+                  : isDarkMode
+                  ? 'bg-gray-800 text-white border border-accent hover:bg-accent hover:text-primary'
                   : 'bg-white text-primary border border-accent hover:bg-accent hover:text-primary'
               }`}
             >
@@ -62,7 +79,8 @@ const Portfolio = () => {
             {portfolios.map((portfolio) => (
               <div
                 key={portfolio._id}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 duration-300 group"
+                onClick={() => openPortfolioModal(portfolio)}
+                className={`rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-2 duration-300 group cursor-pointer ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
               >
                 <div className="relative overflow-hidden h-64 bg-gray-200">
                   {portfolio.images && portfolio.images.length > 0 ? (
@@ -78,9 +96,9 @@ const Portfolio = () => {
                   )}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-primary">{portfolio.title}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">{portfolio.description}</p>
-                  <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                  <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-primary'}`}>{portfolio.title}</h3>
+                  <p className={`mb-4 line-clamp-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{portfolio.description}</p>
+                  <div className={`flex justify-between items-center pt-4 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
                     <span className="inline-block bg-accent bg-opacity-20 text-accent px-3 py-1 rounded-full text-sm capitalize font-semibold">
                       {portfolio.category}
                     </span>
@@ -96,10 +114,17 @@ const Portfolio = () => {
 
         {!loading && portfolios.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-600">No portfolios found in this category.</p>
+            <p className={`text-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>No portfolios found in this category.</p>
           </div>
         )}
       </div>
+
+      {/* Portfolio Modal */}
+      <PortfolioModal
+        portfolio={selectedPortfolio}
+        isOpen={isModalOpen}
+        onClose={closePortfolioModal}
+      />
     </section>
   );
 };

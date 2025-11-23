@@ -1,38 +1,48 @@
 // Header Component
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Header = ({ isAuthenticated, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="bg-primary text-white shadow-lg">
-      <nav className="container mx-auto px-4 py-8 flex justify-between items-center">
+    <header className={`sticky top-0 z-50 shadow-lg transition ${isDarkMode ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
+      <nav className="container mx-auto px-4 py-2 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Link to="/" className="text-2xl font-bold text-accent">
-            MAG Captures
+          <Link to="/" className="hover:opacity-80 transition">
+            <img 
+              src={isDarkMode ? '/logos/mag-logo-light mode.png' : '/logos/mag-logo-dark mode.png'} 
+              alt="MAG Captures Logo" 
+              className="h-16 w-auto" 
+            />
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
-          <Link to="/" className="hover:text-accent transition">Home</Link>
-          <Link to="/portfolio" className="hover:text-accent transition">Portfolio</Link>
-          <Link to="/services" className="hover:text-accent transition">Services</Link>
-          <Link to="/contact" className="hover:text-accent transition">Contact</Link>
+          <Link to="/" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Home</Link>
+          <Link to="/portfolio" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Portfolio</Link>
+          <Link to="/services" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Services</Link>
+          <Link to="/contact" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Contact</Link>
+          
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded transition ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-primary/10 hover:bg-primary/20'}`}
+            title="Toggle dark/light mode"
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          
           {isAuthenticated ? (
-            <button
-              onClick={onLogout}
-              className="bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition"
-            >
+            <button onClick={onLogout} className="bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold">
               Logout
             </button>
           ) : (
-            <Link
-              to="/login"
-              className="bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition"
-            >
+            <Link to="/login" className="bg-accent text-primary px-4 py-2 rounded hover:bg-opacity-90 transition font-semibold">
               Login
             </Link>
           )}
@@ -49,12 +59,21 @@ const Header = ({ isAuthenticated, onLogout }) => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-primary border-t border-accent">
+        <div className={`md:hidden transition ${isDarkMode ? 'bg-primary border-t border-white/10' : 'bg-white border-t border-gray-200'}`}>
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <Link to="/" className="hover:text-accent transition">Home</Link>
-            <Link to="/portfolio" className="hover:text-accent transition">Portfolio</Link>
-            <Link to="/services" className="hover:text-accent transition">Services</Link>
-            <Link to="/contact" className="hover:text-accent transition">Contact</Link>
+            <Link to="/" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Home</Link>
+            <Link to="/portfolio" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Portfolio</Link>
+            <Link to="/services" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Services</Link>
+            <Link to="/contact" className={`hover:text-accent transition font-medium ${isDarkMode ? 'text-white' : 'text-primary'}`}>Contact</Link>
+            
+            {/* Theme Toggle Mobile */}
+            <button
+              onClick={toggleTheme}
+              className={`p-2 rounded transition flex items-center gap-2 ${isDarkMode ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-primary/10 hover:bg-primary/20 text-primary'}`}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+            </button>
             {isAuthenticated ? (
               <button
                 onClick={onLogout}
