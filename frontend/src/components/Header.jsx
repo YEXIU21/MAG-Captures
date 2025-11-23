@@ -16,7 +16,7 @@ const Header = ({ isAuthenticated, onLogout }) => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 items-center">
           <Link to="/" className="hover:text-accent transition">Home</Link>
           <Link to="/portfolio" className="hover:text-accent transition">Portfolio</Link>
           <Link to="/services" className="hover:text-accent transition">Services</Link>
